@@ -5,7 +5,7 @@ import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 import { students } from "@/data/students";
 import { motion } from "motion/react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { useState } from "react";
 
 export default function MemberDetail() {
@@ -13,15 +13,9 @@ export default function MemberDetail() {
   const member = students.find((m) => m.id === params.id);
   const [activeTab, setActiveTab] = useState("overview");
 
-  if (!member) {
-    return (
-      <main className="min-h-screen bg-background">
-        <Navigation />
-        <div className="flex items-center justify-center min-h-screen">
-          <p className="text-muted-foreground">Member not found</p>
-        </div>
-      </main>
-    );
+  // Trigger 404 for vitalii-renkas or if member doesn't exist
+  if (!member || params.id === "vitalii-renkas") {
+    notFound();
   }
 
   return (
