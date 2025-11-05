@@ -3,6 +3,7 @@
 import Navigation from "@/components/navigation";
 import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
@@ -11,6 +12,23 @@ export default function AboutPage() {
 
       <section className="py-12 md:py-20 px-6 md:px-12 pt-32 md:pt-36">
         <div className="max-w-6xl mx-auto">
+          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-accent hover:text-accent/80 mb-8 transition-colors group"
+            >
+              <svg
+                className="w-4 h-4 transition-transform group-hover:-translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to home
+            </Link>
+          </motion.div>
+
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 mb-12">
             {/* Image Column */}
             <motion.div
@@ -21,17 +39,16 @@ export default function AboutPage() {
             >
               <div className="relative aspect-square rounded-2xl overflow-hidden border border-border/50 bg-card shadow-2xl">
                 <PixelatedCanvas
-                  src="/pp.png"
+                  src="/students/medjourney.png"
                   width={500}
                   height={500}
-                  cellSize={4}
-                  dotScale={0.85}
+                  cellSize={2}
+                  dotScale={1}
                   shape="square"
-                  backgroundColor="#000000"
                   dropoutStrength={0.2}
                   interactive
-                  distortionStrength={5}
-                  distortionRadius={120}
+                  distortionStrength={1}
+                  distortionRadius={60}
                   distortionMode="swirl"
                   followSpeed={0.15}
                   jitterStrength={6}
@@ -248,7 +265,7 @@ export default function AboutPage() {
               </div>
 
               <p className="text-base md:text-lg italic text-muted-foreground/80 pt-4">
-                &quot;When it works, don&apos;t touch it!&quot;—but I still write tests before I celebrate.
+                &quot;When it works, don&apos;t touch it!&quot;
               </p>
             </div>
           </motion.div>

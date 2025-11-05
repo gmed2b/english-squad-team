@@ -121,7 +121,7 @@ export default function HeroSection() {
           >
             <MovingBorder
               duration={3000}
-              className="px-8 py-4 text-base md:text-lg font-semibold text-white hover:scale-105 transition-transform cursor-pointer"
+              className="px-8 py-4 text-base md:text-lg font-semibold  hover:scale-105 transition-transform cursor-pointer"
               containerClassName="rounded-full"
               onClick={scrollToStudents}
             >

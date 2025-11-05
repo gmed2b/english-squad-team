@@ -1,8 +1,7 @@
 "use client";
 
-import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
+import { CometCard } from "@/components/ui/comet-card";
 import Link from "next/link";
-import { useState } from "react";
 
 interface SquadCardProps {
   id: string;
@@ -15,73 +14,49 @@ interface SquadCardProps {
 }
 
 export default function SquadCard({ id, name, age, role, image }: SquadCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Use absolute URL for better image loading
   const imageUrl = image || "/pp.png";
 
   return (
     <Link href={`/squad/${id}`}>
-      <div
-        className="group cursor-pointer relative"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className="relative overflow-hidden rounded-xl bg-card border border-border/50 hover:border-purple-500/50 transition-all duration-300">
-          {/* Pixelated Canvas */}
-          <div className="aspect-square">
-            <PixelatedCanvas
-              src={imageUrl}
-              width={400}
-              height={400}
-              cellSize={3}
-              dotScale={0.9}
-              shape="square"
-              backgroundColor="#000000"
-              dropoutStrength={0.3}
-              interactive
-              distortionStrength={4}
-              distortionRadius={100}
-              distortionMode="swirl"
-              followSpeed={0.2}
-              jitterStrength={5}
-              jitterSpeed={4}
-              sampleAverage
-              tintColor="#a855f7"
-              tintStrength={isHovered ? 0.2 : 0.1}
-              className="w-full h-full"
-              objectFit="cover"
-              key={imageUrl}
-            />
-          </div>
+      <CometCard rotateDepth={15} translateDepth={15}>
+        <div
+          className="relative flex w-full cursor-pointer flex-col items-stretch rounded-2xl border-0 bg-card/80 backdrop-blur-sm p-2 md:p-4 overflow-hidden"
+          style={{
+            transformStyle: "preserve-3d",
+          }}
+        >
+          <div className="mx-2 flex-1">
+            <div className="relative mt-2 aspect-[3/4] w-full">
+              <img
+                loading="lazy"
+                className="absolute inset-0 h-full w-full rounded-2xl bg-black object-cover contrast-90 saturate-90"
+                alt={name}
+                src={imageUrl}
+                style={{
+                  boxShadow: "rgba(0, 0, 0, 0.3) 0px 5px 15px 0px",
+                }}
+              />
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent rounded-2xl" />
 
-          {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent pointer-events-none" />
-
-          {/* Card content */}
-          <div className="absolute inset-0 flex flex-col justify-end p-6">
-            <div className="transform transition-all duration-300 group-hover:translate-y-0 translate-y-2">
-              <div className="flex items-end justify-between">
-                <div className="flex-1">
-                  <h3 className="text-xl md:text-2xl font-bold text-white drop-shadow-lg mb-1">{name}</h3>
-                  <p className="text-sm md:text-base text-white/90 font-medium">{role}</p>
+              {/* Age badge */}
+              {typeof age !== "undefined" && (
+                <div className="absolute top-3 right-3 px-3 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg">
+                  <span className="text-sm font-bold text-white">{age}</span>
                 </div>
-
-                {typeof age !== "undefined" && (
-                  <div className="ml-4 px-3 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg">
-                    <span className="text-sm font-semibold text-white">{age} yrs</span>
-                  </div>
-                )}
-              </div>
+              )}
             </div>
           </div>
 
-          {/* Hover glow effect */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            <div className="absolute inset-0 bg-linear-to-t from-purple-500/20 via-transparent to-transparent" />
+          {/* Card footer */}
+          <div className="mt-3 flex flex-shrink-0 flex-col p-4 font-sans text-white gap-1">
+            <div className="text-lg md:text-xl font-bold text-white drop-shadow-lg">{name}</div>
+            <div className="text-sm md:text-base text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-pink-400 to-blue-400 font-semibold">
+              {role}
+            </div>
           </div>
         </div>
-      </div>
+      </CometCard>
     </Link>
   );
 }

@@ -60,18 +60,11 @@ export default function MemberDetail() {
                   src={member.photo}
                   width={500}
                   height={500}
-                  cellSize={4}
-                  dotScale={0.85}
+                  cellSize={3}
                   shape="square"
                   backgroundColor="#000000"
                   dropoutStrength={0.2}
                   interactive
-                  distortionStrength={5}
-                  distortionRadius={120}
-                  distortionMode="swirl"
-                  followSpeed={0.15}
-                  jitterStrength={6}
-                  jitterSpeed={3}
                   sampleAverage
                   tintColor="#a855f7"
                   tintStrength={0.15}
