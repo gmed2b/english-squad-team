@@ -3,11 +3,8 @@
 import Navigation from "@/components/navigation";
 import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 import { motion } from "motion/react";
-import { useState } from "react";
 
 export default function AboutPage() {
-  const [activeTab, setActiveTab] = useState("profile");
-
   return (
     <main className="min-h-screen bg-background">
       <Navigation />
@@ -114,251 +111,146 @@ export default function AboutPage() {
             </motion.div>
           </div>
 
-          {/* Tabs */}
+          {/* Long-form Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="border-b border-border mb-8"
+            className="bg-linear-to-br from-purple-500/5 to-pink-500/5 border border-purple-500/20 rounded-2xl p-8 md:p-12"
           >
-            <div className="flex gap-6 md:gap-8 overflow-x-auto">
-              {["profile", "strengths", "future plans", "fun fact", "contact"].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`pb-4 text-sm font-medium capitalize border-b-2 transition-colors whitespace-nowrap ${
-                    activeTab === tab
-                      ? "border-accent text-accent"
-                      : "border-transparent text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-          </motion.div>
+            <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-6">
+              <p className="text-base md:text-lg">
+                I&apos;m Mehdi Ghoulam, a French full-stack developer and Master 2 Informatique student with a strong
+                product mindset and a passion for building robust, user-centric applications end to end. I thrive at the
+                intersection of clean architecture, developer experience, and impactful delivery, moving comfortably
+                across front-end interfaces and back-end services.
+              </p>
 
-          {/* Tab Content */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="space-y-6"
-          >
-            {activeTab === "profile" && (
-              <div className="space-y-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-linear-to-br from-purple-500/5 to-pink-500/5 border border-purple-500/20 rounded-2xl p-6 md:p-8"
-                >
-                  <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                    <span>👨‍💻</span> About Me
-                  </h3>
-                  <div className="space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
-                    <p>
-                      I'm Mehdi Ghoulam, a French full-stack developer and Master 2 Informatique student with a strong
-                      product mindset and a passion for building robust, user-centric applications end to end. I thrive
-                      at the intersection of clean architecture, developer experience, and impactful delivery, moving
-                      comfortably across front-end interfaces and back-end services.
-                    </p>
-                    <p>
-                      On the front end, I specialize in TypeScript, React, and React Native, with a focus on component
-                      design, state management, and performance. On the back end, I work with PHP and Laravel to build
-                      reliable APIs, and I design relational schemas with PostgreSQL that balance scalability and
-                      clarity.
-                    </p>
-                    <p>
-                      I'm comfortable shaping API contracts, writing integration tests, and instrumenting apps for
-                      observability. I care deeply about code readability, maintainability, and incremental delivery.
-                    </p>
-                  </div>
-                </motion.div>
+              <p className="text-base md:text-lg">
+                On the front end, I specialize in TypeScript, React, and React Native, with a focus on component design,
+                state management, and performance optimization. On the back end, I work with PHP and Laravel to build
+                reliable APIs, and I design relational schemas with PostgreSQL that balance scalability and clarity.
+                I&apos;m comfortable shaping API contracts, writing integration tests, and instrumenting apps for
+                observability. I care deeply about code readability, maintainability, and incremental delivery.
+              </p>
+
+              <div className="my-8">
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">💪 Technical Expertise</h3>
+                <div className="flex flex-wrap gap-3 mb-6">
+                  {[
+                    "TypeScript",
+                    "React",
+                    "React Native",
+                    "PHP",
+                    "Laravel",
+                    "RESTful APIs",
+                    "PostgreSQL",
+                    "Full-stack Product Thinking",
+                  ].map((strength, index) => (
+                    <motion.span
+                      key={strength}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      className="px-4 py-2 bg-linear-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-full text-sm text-foreground font-semibold"
+                    >
+                      {strength}
+                    </motion.span>
+                  ))}
+                </div>
+                <p className="text-base md:text-lg">
+                  While I excel in these areas, I&apos;m actively expanding my Python skills for data tooling and
+                  backend scripting—comfortable reading production code but still building toward production-grade
+                  services.
+                </p>
               </div>
-            )}
 
-            {activeTab === "strengths" && (
-              <div className="space-y-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-card border border-border rounded-2xl p-6 md:p-8 hover:border-purple-500/30 transition-colors"
-                >
-                  <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                    <span>💪</span> Coding Strengths
-                  </h3>
-                  <div className="flex flex-wrap gap-3">
-                    {[
-                      "TypeScript",
-                      "React",
-                      "React Native",
-                      "PHP",
-                      "Laravel",
-                      "RESTful APIs",
-                      "PostgreSQL",
-                      "Full-stack Product Thinking",
-                    ].map((strength, index) => (
-                      <motion.span
-                        key={strength}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: index * 0.05 }}
-                        className="px-4 py-2 bg-linear-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-full text-sm text-foreground font-semibold hover:scale-105 transition-transform"
-                      >
-                        {strength}
-                      </motion.span>
-                    ))}
-                  </div>
-                </motion.div>
+              <div className="my-8">
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">🏆 Biggest Achievement</h3>
+                <p className="text-base md:text-lg">
+                  As co-founder of{" "}
+                  <a
+                    href="https://mindlet.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent hover:underline font-semibold"
+                  >
+                    Mindlet 🐙
+                  </a>
+                  , I contributed across the entire stack—from crafting intuitive UI/UX flows and delivering smooth
+                  mobile experiences to designing APIs, implementing secure authentication, and modeling database
+                  schemas. Shipping a real product to real users taught me pragmatic trade-offs, release discipline, and
+                  how to turn user feedback into rapid, meaningful iterations. This experience solidified my
+                  understanding of full-stack product thinking and the importance of balancing speed with quality.
+                </p>
+              </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="bg-card border border-border rounded-2xl p-6 md:p-8 hover:border-purple-500/30 transition-colors"
-                >
-                  <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                    <span>🎯</span> Areas for Growth
-                  </h3>
-                  <div className="flex flex-wrap gap-3">
-                    <span className="px-4 py-2 bg-muted/50 border border-border rounded-full text-sm text-muted-foreground font-medium">
-                      Python (learning path in progress)
-                    </span>
-                  </div>
-                </motion.div>
+              <div className="my-8">
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">🚀 Future Goals</h3>
+                <p className="text-base md:text-lg mb-4">
+                  Looking ahead, I&apos;m focused on completing my Master 2 in Computer Science while deepening my
+                  expertise in platform reliability through testing, CI/CD pipelines, and monitoring. I&apos;m eager to
+                  explore cloud-native patterns—particularly Docker, containerization, and managed PostgreSQL
+                  solutions—to build more scalable and resilient systems.
+                </p>
+                <p className="text-base md:text-lg">
+                  Additionally, I&apos;m committed to improving mobile performance and accessibility, ensuring that the
+                  applications I build are not only fast but also inclusive. Strengthening my Python skills remains a
+                  key priority, as I see immense value in leveraging it for data tooling and backend automation. My
+                  ultimate goal is to become a well-rounded engineer who can contribute meaningfully across the entire
+                  technology stack.
+                </p>
+              </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="bg-linear-to-br from-yellow-500/5 to-orange-500/5 border border-yellow-500/20 rounded-2xl p-6 md:p-8"
-                >
-                  <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                    <span>🏆</span> Biggest Achievement
-                  </h3>
-                  <p className="text-foreground leading-relaxed text-base md:text-lg font-medium">
-                    Co-founder of{" "}
+              <div className="my-8">
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">💡 Philosophy</h3>
+                <p className="text-base md:text-lg">
+                  What motivates me most is turning product goals into maintainable, elegant code. I believe in clean
+                  architecture, clear API boundaries, and measured releases backed by comprehensive testing and
+                  instrumentation. I value collaboration, thorough code reviews, and documentation that empowers teams
+                  to move faster with confidence. My approach is always to ship incrementally, learn continuously, and
+                  maintain a strong focus on the end user&apos;s experience.
+                </p>
+              </div>
+
+              <div className="my-8 p-6 bg-card border border-border rounded-xl">
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">📬 Let&apos;s Connect</h3>
+                <p className="text-base md:text-lg mb-4">
+                  I&apos;m excited to contribute to teams where I can bring full-stack impact from day one, continue
+                  learning, and help ship features that users love. Whether it&apos;s building new features, optimizing
+                  existing systems, or collaborating on architectural decisions, I&apos;m ready to make a meaningful
+                  contribution.
+                </p>
+                <div className="mt-6">
+                  <p className="text-foreground font-semibold text-lg mb-2">Mehdi Ghoulam</p>
+                  <p className="text-sm text-muted-foreground">Mulhouse, France</p>
+                  <p className="text-sm text-muted-foreground mb-4">Full-Stack Developer</p>
+                  <div className="flex flex-wrap gap-4">
+                    <a
+                      href="https://gelk.fr"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent hover:underline font-medium"
+                    >
+                      🌐 gelk.fr
+                    </a>
                     <a
                       href="https://mindlet.app"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-accent hover:underline"
+                      className="text-accent hover:underline font-medium"
                     >
-                      Mindlet 🐙
+                      🐙 mindlet.app
                     </a>
-                    , where I contributed across the stack—from UI/UX flows and mobile experience to API design,
-                    authentication, and database modeling. Shipping a real product to real users taught me pragmatic
-                    trade-offs, release discipline, and how to turn feedback into rapid iterations.
-                  </p>
-                </motion.div>
-              </div>
-            )}
-
-            {activeTab === "future plans" && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-linear-to-br from-blue-500/5 to-cyan-500/5 border border-blue-500/20 rounded-2xl p-6 md:p-8"
-              >
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <span>🚀</span> Future Plans
-                </h3>
-                <ul className="space-y-3 text-foreground leading-relaxed text-base md:text-lg">
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">•</span>
-                    <span>Complete my Master 2 in Computer Science</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">•</span>
-                    <span>Deepen platform reliability (testing, CI/CD, monitoring)</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">•</span>
-                    <span>Explore cloud-native patterns (Docker, containers, and managed Postgres)</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">•</span>
-                    <span>Improve mobile performance and accessibility</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">•</span>
-                    <span>Level up Python for data tooling and backend scripting</span>
-                  </li>
-                </ul>
-              </motion.div>
-            )}
-
-            {activeTab === "fun fact" && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-linear-to-br from-pink-500/5 to-purple-500/5 border border-pink-500/20 rounded-2xl p-6 md:p-8"
-              >
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <span>🎉</span> Fun Fact
-                </h3>
-                <p className="text-foreground leading-relaxed text-base md:text-lg font-medium">
-                  "When it works, don't touch it!"—but I still write tests before I celebrate.
-                </p>
-              </motion.div>
-            )}
-
-            {activeTab === "contact" && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-linear-to-br from-purple-500/5 to-pink-500/5 border border-purple-500/20 rounded-2xl p-6 md:p-8"
-              >
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <span>📬</span> Get In Touch
-                </h3>
-                <div className="space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
-                  <p>
-                    My name is Mehdi Ghoulam, a Master 2 Informatique student and full-stack developer passionate about
-                    building reliable, user-focused software. I work primarily with TypeScript, React/React Native on
-                    the front end and PHP/Laravel with PostgreSQL on the back end.
-                  </p>
-                  <p>
-                    What motivates me most is turning product goals into maintainable code—clean architecture, clear API
-                    boundaries, and measured releases with testing and instrumentation. I value collaboration, code
-                    reviews, and documentation that helps teams move faster with confidence.
-                  </p>
-                  <p>
-                    I'm excited to contribute to a team where I can bring full-stack impact from day one, continue
-                    learning (especially strengthening my Python for tooling and backend tasks), and help ship features
-                    that users love.
-                  </p>
-                  <div className="mt-8 p-6 bg-card border border-border rounded-xl">
-                    <p className="text-foreground font-semibold mb-2">Mehdi Ghoulam</p>
-                    <p className="text-sm text-muted-foreground">Mulhouse, France</p>
-                    <p className="text-sm text-muted-foreground">Full-Stack Developer</p>
-                    <div className="flex flex-wrap gap-4 mt-4">
-                      <a
-                        href="https://gelk.fr"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-accent hover:underline text-sm"
-                      >
-                        gelk.fr
-                      </a>
-                      <a
-                        href="https://mindlet.app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-accent hover:underline text-sm"
-                      >
-                        mindlet.app
-                      </a>
-                    </div>
                   </div>
                 </div>
-              </motion.div>
-            )}
+              </div>
+
+              <p className="text-base md:text-lg italic text-muted-foreground/80 pt-4">
+                &quot;When it works, don&apos;t touch it!&quot;—but I still write tests before I celebrate.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
